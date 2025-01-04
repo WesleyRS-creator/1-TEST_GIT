@@ -5,6 +5,8 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="main.User" %>
 <%@ page import="models.DAOUser" %>
+<%@ page import="models.DAOProduit" %> <!-- Importer DAOProduit pour récupérer les produits -->
+<%@ page import="main.Produit" %> <!-- Importer la classe Produit -->
 
 <%
     // Vérification de la session
@@ -83,18 +85,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (UserHistorique history : historyList) { %>
+                        <% for (UserHistorique history : historyList) { 
+                            // Récupérer le produit via son ID
+                             
+                            Produit produit = null;
+                            try {
+                                pgdbc.openDefaultConnection();
+                                DAOProduit daoProduit = new DAOProduit(pgdbc.getConnection());
+                                daoProduit.getById(history.getMouvement().getIdProduit());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            } finally {
+                                pgdbc.closeConnection();
+                            }
+                        %>
                             <tr>
                                 <td><%= history.getIdUserHistory() %></td>
                                 <td><%= history.getIdFacture() %></td>
                                 <td><%= history.getMarketUser() != null ? history.getMarketUser().getNom() : "N/A" %></td>
-                                <td><%= history.getMouvement() != null ? history.getMouvement().getProduitNom() : "N/A" %></td>
-                                <td><%= history.getMouvement() != null ? history.getMouvement().getCategorieNom() : "N/A" %></td>
-                                <td><%= history.getMouvement() != null ? history.getMouvement().getMarqueNom() : "N/A" %></td>
-                                <td><%= history.getMouvement() != null ? history.getMouvement().getRating() : "N/A" %></td>
-                                <td><%= history.getMouvement() != null ? history.getMouvement().getQuantite() : "N/A" %></td>
-                                <td><%= history.getMouvement() != null ? history.getMouvement().getPrix() : "N/A" %></td>
-                                <td><%= history.getMouvement() != null ? history.getMouvement().getDate() : "N/A" %></td>
+                                <td><%= produit != null ? produit.getNom() : "N/A" %></td>
+                                <td><%= produit != null ? produit.getCategorie().getNom() : "N/A" %></td>
+                                <td><%= produit != null ? produit.getBrand().getNom() : "N/A" %></td>
+                                <td><%= history.getMouvement() != null ? produit.getNote() : "N/A" %></td>
+                                <td><%= history.getMouvement() != null ? produit.getStock() : "N/A" %></td>
+                                <td><%= history.getMouvement() != null ? (produit.getStock()*produit.getPrixUnitaire()) : "N/A" %></td>
+                                <td><%= history.getMouvement() != null ? history.getMouvement().getDateMouvement() : "N/A" %></td>
                             </tr>
                         <% } %>
                     </tbody>
