@@ -72,13 +72,27 @@ INSERT INTO PRODUIT (
     soft_delete
 ) 
 VALUES (
-    'Casque Bluetooth',        -- NOM_PRODUIT
-    1,                          -- ID_BRAND (en supposant que la marque avec l'ID 1 existe)
-    3,                          -- ID_CATEGORIE (en supposant que la catégorie avec l'ID 3 existe)
-    'Casque Bluetooth sans fil, qualité sonore supérieure, autonomie longue durée.',  -- DESCRIPTION_PRODUIT
-    99,                         -- PRIX_UNITAIRE
-    4.5,                        -- NOTE
-    'https://example.com/image.jpg', -- image_source
-    FALSE                       -- soft_delete
+    'Casque Bluetooth',  
+    1,                    
+    3,               
+    'Casque Bluetooth sans fil, qualité sonore supérieure, autonomie longue durée.',  
+    99,                    
+    4.5,     
+    'https://example.com/image.jpg',
+    FALSE                     
 );
+
+INSERT INTO CATEGORIE (name) 
+VALUES 
+    ('Electronique'),  -- Catégorie Electronique
+    ('Vêtements'),     -- Catégorie Vêtements
+    ('Meubles'),       -- Catégorie Meubles
+    ('Alimentation');  -- Catégorie Alimentation
+
+INSERT INTO BRAND (name) 
+VALUES 
+    ('Sony'),          -- Marque Sony
+    ('Nike'),          -- Marque Nike
+    ('Ikea'),          -- Marque Ikea
+    ('Nestlé');        -- Marque Nestlé
 
