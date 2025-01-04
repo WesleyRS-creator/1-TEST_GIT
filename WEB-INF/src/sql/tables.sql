@@ -60,3 +60,25 @@ VALUES
 INSERT INTO MOUVEMENT (ID_PRODUIT, QUANTITY, ID_TYPE_MOUVEMENT, DATE_MOUVEMENT)
 VALUES 
 (1, 20, 2, '2024-12-31 10:30:00');
+
+INSERT INTO PRODUIT (
+    NOM_PRODUIT, 
+    ID_BRAND, 
+    ID_CATEGORIE, 
+    DESCRIPTION_PRODUIT, 
+    PRIX_UNITAIRE, 
+    NOTE, 
+    image_source, 
+    soft_delete
+) 
+VALUES (
+    'Casque Bluetooth',        -- NOM_PRODUIT
+    1,                          -- ID_BRAND (en supposant que la marque avec l'ID 1 existe)
+    3,                          -- ID_CATEGORIE (en supposant que la catégorie avec l'ID 3 existe)
+    'Casque Bluetooth sans fil, qualité sonore supérieure, autonomie longue durée.',  -- DESCRIPTION_PRODUIT
+    99,                         -- PRIX_UNITAIRE
+    4.5,                        -- NOTE
+    'https://example.com/image.jpg', -- image_source
+    FALSE                       -- soft_delete
+);
+
