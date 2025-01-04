@@ -8,7 +8,7 @@
     // Vérification de la session
     Integer userId = (Integer) session.getAttribute("user_id");
     if (userId == null) {
-        response.sendRedirect("../../login.jsp");
+        response.sendRedirect("../../../login.jsp");
         return;
     }
 
@@ -42,7 +42,6 @@
     <!-- Navigation Partagée -->
     <nav>
         <a href="../admin_home.jsp">Dashboard</a>
-        <a href="../form/form_brand.jsp">Form brand</a>
         <a href="treatment_logout.jsp">Déconnexion</a>
     </nav>
 

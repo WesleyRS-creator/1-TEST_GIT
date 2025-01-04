@@ -54,7 +54,7 @@
     <main>
         <!-- Lien pour ajouter une nouvelle catégorie -->
         <section>
-            <a href="admin_category_insertion.jsp">Nouvelle Catégorie</a>
+            <a href="views\creation_categorie.jsp">Nouvelle Catégorie</a>
         </section>
 
         <!-- Liste des catégories -->
@@ -68,13 +68,15 @@
                             <p>ID: <%= categorie.getId() %></p>
                             <a href="admin_category_details.jsp?idCategory=<%= categorie.getId() %>">Voir Plus</a>
                             <a href="admin_category_edit.jsp?idCategory=<%= categorie.getId() %>">Modifier</a>
-                            <a href="admin_category_delete.jsp?idCategory=<%= categorie.getId() %>">Supprimer</a>
+                            <a href="views\admin_category_delete.jsp?idCategory=<%= categorie.getId() %>">Supprimer</a>
                         </div>
                     <% } %>
                 </div>
             <% } else { %>
                 <p>Aucune catégorie trouvée.</p>
             <% } %>
+
+            
         </section>
     </main>
 

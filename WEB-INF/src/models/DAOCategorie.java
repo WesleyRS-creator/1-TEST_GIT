@@ -72,6 +72,21 @@ public class DAOCategorie extends DAO<Categorie> {
         return null;
     }
 
+    public Categorie getByName(String name) {
+        String query = "SELECT * FROM CATEGORIE WHERE NAME = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, name);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return mapResultSetToEntity(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public void update(Categorie categorie) {
         String query = "UPDATE CATEGORIE SET name = ? WHERE ID_CATEGORIE = ?";
@@ -89,7 +104,11 @@ public class DAOCategorie extends DAO<Categorie> {
         String query = "DELETE FROM CATEGORIE WHERE ID_CATEGORIE = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setInt(1, id);
-            pstmt.executeUpdate();
+            int rowsAffected = pstmt.executeUpdate(); // Récupère le nombre de lignes affectées
+
+            if (rowsAffected == 0) {
+                throw new SQLException("Aucune catégorie supprimée, l'ID n'existe pas.");
+            }
         } catch (SQLException e)            {
             e.printStackTrace();
         }
@@ -99,4 +118,6 @@ public class DAOCategorie extends DAO<Categorie> {
     public Categorie mapResultSetToEntity(ResultSet rs) throws SQLException {
         return new Categorie(rs.getInt("ID_CATEGORIE"), rs.getString("name"));
     }
+
+    
 }
