@@ -19,6 +19,13 @@ public class UserHistorique {
 
     }
 
+    public UserHistorique(int idUserHistory, int idFacture, User u, Mouvement m) {
+        setIdUserHistory(idUserHistory);
+        setIdFacture(idFacture);
+        setMarketUser(u);
+        setMouvement(m);
+    }
+
     public void setIdFacture(int idFacture) {
         this.idFacture = idFacture;
     }
