@@ -109,9 +109,7 @@ public class DAOUserHistorique extends DAO<UserHistorique> {
 
         Mouvement mouvement = daoMouvement.getById(idMouvement);
 
-        UserHistorique historique = new UserHistorique(idUserHistory, idFacture, idMarketUser, idMouvement);
-        historique.setMarketUser(marketUser);
-        historique.setMouvement(mouvement);
+        UserHistorique historique = new UserHistorique(idUserHistory, idFacture, marketUser, mouvement);
 
         return historique;
     }

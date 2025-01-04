@@ -73,6 +73,14 @@
                             <p>Prix Unitaire: <%= produit.getPrixUnitaire() %> €</p>
                             <p>Description: <%= produit.getDescription() %></p>
                             <a href="admin_product_details.jsp?productId=<%= produit.getId() %>">Voir Plus</a>
+
+                            <!-- Formulaire de réapprovisionnement -->
+                            <form action="admin_product_restock.jsp" method="POST" class="restock-form">
+                                <input type="hidden" name="productId" value="<%= produit.getId() %>">
+                                <label for="restock_<%= produit.getId() %>">Ajouter au Stock :</label>
+                                <input type="number" id="restock_<%= produit.getId() %>" name="restockAmount" min="1" required>
+                                <button type="submit">Valider</button>
+                            </form>
                         </div>
                     <% } %>
                 </div>
